@@ -1,11 +1,10 @@
-// Setup empty JS object to act as endpoint for all routes
-projectData = {};
+// Setup empty JS array of Objects to act as endpoint for all routes
+projectData = [];
 
 // Require Express to run server and routes
 const express = require('express');
 const bodyParser = require('body-parser');
-var cors = require('cors');
-const path = require('path');
+const cors = require('cors');
 
 // Start up an instance of app
 const app = express();
@@ -23,10 +22,19 @@ app.use(express.static('website'));
 
 // Setup Server
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/website', 'index.html'));
+// push data to project array when there is a /add post request
+app.post('/add', (req, res) => {
+    projectData.push(req.body);
+    console.log(projectData);
 });
 
+// return project array when there is get request to /data
+app.get('/data', (req, res) => {
+    res.send(projectData);
+});
+
+
+// set port to be 3000 or a given port in .env config
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
