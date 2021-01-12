@@ -4,12 +4,12 @@ const feelingsInput = document.getElementById('feelings');
 const generateBtn = document.getElementById('generate');
 // const entryHolder = document.getElementById('entryHolder');
 
-const dateHolder = document.getElementById('date')
-const tempHolder = document.getElementById('temp')
-const feelingsHolder = document.getElementById('content')
+const dateHolder = document.getElementById('date');
+const tempHolder = document.getElementById('temp');
+const feelingsHolder = document.getElementById('content');
 
 const icon = `http://openweathermap.org/img/wn/`;
-let iconId = ''
+let iconId = '';
 const APIUrl = 'http://api.openweathermap.org/data/2.5/weather?';
 const APIKey = '8c323c9fbdc6b9a8fbe1af8ab73c73df';
 // Create a new date instance dynamically with JS
@@ -31,8 +31,14 @@ function clickAction(e) {
     }
 
     console.log(zipValue, feelingsValue);
-    fetchFromAPI(APIUrl, APIKey, zipValue)
-
+    fetchFromAPI(APIUrl, APIKey, zipValue).then((data) => {
+        projectData = {
+            temp: data,
+            date: newDate,
+            feelings: feelingsValue,
+        };
+        postDataToSever(projectData);
+    });
 }
 
 let fetchFromAPI = async(APIUrl, APIKey, zipValue) => {
@@ -42,8 +48,27 @@ let fetchFromAPI = async(APIUrl, APIKey, zipValue) => {
     try {
         const data = await serverRes.json();
         console.log(data);
-        iconId = data.weather[0].icon
+        iconId = data.weather[0].icon;
         return data.main.temp;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+const postDataToSever = async(data) => {
+    const serverRes = await fetch('/add', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+
+    try {
+        console.log(serverRes);
+        const data = await serverRes.json();
+        return data;
     } catch (error) {
         console.log(error);
     }
