@@ -52,6 +52,15 @@ function clickAction(e) {
             //call server
             postDataToSever(projectData);
         })
+        //after calling server
+        // update the UI
+        .then(() => {
+            updatePage();
+        })
+        .catch((err) => {
+            // set error text display block if there is an error
+            zipTextError.style.display = 'block';
+        });
 }
 
 let fetchFromAPI = async(APIUrl, APIKey, zipValue) => {
@@ -96,4 +105,25 @@ const postDataToSever = async(data) => {
     } catch (error) {
         console.log(error);
     }
+};
+
+const updatePage = async() => {
+    //call local server and receive data and convert it to json
+    let serverData = await (await fetch('/data')).json();
+    //get last index of array of object
+    let lastIndex = serverData.length - 1;
+    // set display none error text if display block
+    zipTextError.style.display = 'none';
+
+    //set text to app results elements
+    tempText.innerHTML = `${serverData[lastIndex].temp}&#8451;`;
+    cityText.innerHTML = `City: ${cityName}`;
+    dateText.innerHTML = `Date: ${serverData[lastIndex].date}`;
+    feelingsText.innerHTML = `Feelings: ${serverData[lastIndex].feelings}`;
+    iconImg.src = `${icon}${iconId}@2x.png`;
+
+    //set text to most recent elements
+    dateHolder.innerHTML = `Date: ${serverData[lastIndex].date}`;
+    tempHolder.innerHTML = `Temp: ${serverData[lastIndex].temp}&#8451;`;
+    feelingsHolder.innerHTML = `Feelings: ${serverData[lastIndex].feelings}`;
 };
