@@ -1,111 +1,183 @@
-body{
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     background: #fffff8;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    height: 100vh;
 }
 
-#app{
-    display: grid;
-    grid-auto-rows: minmax(150px, auto);
-    /* grid-template-columns:  */
-    height:100vh;
-    background: #f23557;
-    color: #f0d43a;
-    justify-content: center;
-    grid-gap: 1em;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
-}
-
-.holder{
-
-}
-
-.entry{
-    background: rgba(59, 74, 107, .4);
-}
-
-#entryHolder{
-
-}
-
-#date{
-
-}
-
-#temp{
-
-}
-
-#content{
-
+.bg-image {
+    position: absolute;
+    background-image: url('images/sky.jpg');
+    height: 100vh;
+    width: 100vw;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
 }
 
 .headline {
-
-}
-.title{
-
-}
-
-/*  Basic Styling To Override Default For Basic HTML Elements */
-label{
-    display:block;
-    font-size: 27px;
+    text-align: center;
+    font-size: 32px;
+    padding-top: 20px;
+    font-weight: bold;
+    color: #fff3e6;
 }
 
-input{
-    display:block;
-    height: 60px;
+.container {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#app {
+    display: grid;
+    grid-template-areas: 'inputs inputs result result''ft ft ft ft ';
+    color: #fff3e6;
+    background: #1a518b93;
+    width: 80%;
+    max-width: 850px;
+    height: 700px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 1em;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    border-radius: 10px;
+}
+
+.app__inputs,
+.app__results {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 340px;
+    height: 440px;
+}
+
+.app__inputs {
+    grid-area: inputs;
+}
+
+#zipCode-error {
+    display: none;
+    color: #ef4f4f;
+}
+
+#zip,
+button,
+#feelings {
+    display: block;
     width: 320px;
-    background:#22b2da;
-    color: #f0d43a;
+    padding: 20px;
+    background: #09015f8a;
+    color: #fff3e6;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     border: none;
+    border-radius: 10px;
 }
 
-button{
-    width: 400px;
-    height: 100px;
-    background: #3b4a6b;
-    color: #f0d43a;
+.feel {
+    margin-top: 20px;
+}
+
+#feelings {
+    color: #fff3e6;
+    height: 200px;
+    font-family: 'Oswald', sans-serif;
+}
+
+button {
+    margin: 20px 0;
+    color: #fff3e6;
     font-size: 26px;
     font-family: 'Oswald', sans-serif;
     border: none;
     box-shadow: 2px 4px 5px #444;
-}
-h1{
-    font-size: 36px;
+    cursor: pointer;
 }
 
-textarea{
-    background:#22b2da;
-    color: #f0d43a;
-    font-size: 20px;
-    font-family: 'Oswald', sans-serif;
+button:hover {
+    filter: opacity(0.9);
 }
+
+.app__results {
+    grid-area: result;
+}
+
+#degrees {
+    font-size: 46px;
+    text-align: center;
+}
+
+#weather-icon {
+    width: 256px;
+}
+
+#results__text {
+    text-align: center;
+    width: 80%;
+    display: grid;
+    grid-template-areas: 'left right';
+}
+
+.left-text {
+    grid-area: left;
+}
+
+.entry {
+    grid-area: ft;
+    background: rgba(59, 74, 107, .4);
+    min-height: 100px;
+    padding: 10px 15px;
+}
+
+
+/*  Basic Styling To Override Default For Basic HTML Elements */
+
+label {
+    display: block;
+    font-size: 27px;
+}
+
+
 /* Reset style for HTML element on active to have no border*/
+
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
     outline: none;
 }
+
+
 /* Style for Placeholder Text*/
-::placeholder { /* Firefox, Chrome, Opera */ 
-    color: #f0d43a; 
-    font-family: 'Oswald', sans-serif;
 
-} 
-  
-:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-    color: #f0d43a; 
+::placeholder {
+    /* Firefox, Chrome, Opera */
+    color: #fff3e6;
     font-family: 'Oswald', sans-serif;
+}
 
-} 
-  
-::-ms-input-placeholder { /* Microsoft Edge */ 
-    color: #f0d43a; 
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #fff3e6;
     font-family: 'Oswald', sans-serif;
+}
 
-} 
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: #fff3e6;
+    font-family: 'Oswald', sans-serif;
+}

@@ -1,35 +1,77 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Weather Journal</title>
-<link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
- <body>
-<div id = "app">
-  <div class ="holder headline">
-    Weather Journal App
-  </div>
-  <div class ="holder zip">
-    <label for="zip">Enter Zipcode here</label>
-    <input type="text" id="zip" placeholder="enter zip code here">
-  </div>
-  <div class ="holder feel">
-    <label for="feelings">How are you feeling today?</label>
-    <textarea class= "myInput" id="feelings" placeholder="Enter your feelings here" rows="9" cols="50"></textarea>
-    <button id="generate" type = "submit"> Generate </button>
-  </div>
-  <div class ="holder entry">
-    <div class = "title">Most Recent Entry</div>
-   <div id = "entryHolder">
-    <div id = "date"></div> 
-   <div id = "temp"></div>
-   <div id = "content"></div>
-  </div>
-  </div>
-  </div>
-<script src="app.js" type="text/javascript"></script>
 
-</body>
+<head>
+    <meta charset="UTF-8" />
+    <title>Weather Journal</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- blurred background image -->
+    <div class="bg-image"></div>
+    <!-- title text -->
+    <div class="headline">Weather Journal App</div>
+    <!--Container start -->
+
+    <div class="container">
+        <!--app container start -->
+        <div id="app">
+            <!-- app input Start -->
+            <div class="app__inputs">
+                <div>
+                    <label for="zip">Enter Zip Code here</label>
+                    <input type="text" id="zip" placeholder="enter zip code here" />
+                    <div id="zipCode-error">The zip code is wrong</div>
+                    <div class="feel">
+                        <label for="feelings">How are you feeling today?</label
+							>
+							<textarea
+								id="feelings"
+								placeholder="Enter your feelings here"
+							></textarea>
+							<button id="generate" type="submit">
+								Generate
+							</button>
+						</div>
+					</div>
+				</div>
+				<!-- app input End -->
+
+                <!-- app results Start -->
+                <!-- content here will be updated dynamically -->
+				<div class="app__results">
+					<div id="degrees">-</div>
+					<img
+						src="images/defualtIcon.png"
+						id="weather-icon"
+						alt=""
+					/>
+					<div id="results__text">
+						<div class="left-text">
+							<div id="city-text">City:</div>
+							<div id="date-text">Date:</div>
+						</div>
+						<div id="feelings-text">Feelings:</div>
+					</div>
+				</div>
+				<!-- app results End -->
+				<!--Recent entry Start -->
+				<div class="entry">
+                    <div class="title">Most Recent Entry</div>
+                <!-- content here will be updated dynamically -->
+					<div id="entryHolder">
+						<div id="date"></div>
+						<div id="temp"></div>
+						<div id="content"></div>
+					</div>
+				</div>
+				<!--Recent entry End -->
+			</div>
+			<!--app container End -->
+		</div>
+		<!--Container entry End -->
+		<script src="app.js" type="text/javascript"></script>
+	</body>
 </html>
