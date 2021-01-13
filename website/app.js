@@ -100,7 +100,6 @@ const postDataToSever = async(data) => {
     try {
         //convert server response to json
         const data = await serverRes.json();
-        console.log('data', data);
         return data;
     } catch (error) {
         console.log(error);
